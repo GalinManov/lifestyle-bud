@@ -6,14 +6,15 @@ import {Route, Routes} from 'react-router-dom';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <div className='h-svh bg-green-100'>
       <NavBar></NavBar>
-      <Home></Home>
+      
       <Routes>
-        <Route path="/create" element={<Create></Create>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path="/create" element={<Create />}></Route>
       </Routes>
     </div>
   )
