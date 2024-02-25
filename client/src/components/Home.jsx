@@ -3,8 +3,8 @@ import { FoodForm } from "./FoodForm"
 import { Workouts } from "./Workouts"
 
 
-
 export const Home = () => {
+
     return (
         <section className="p-10 mt-8">
 
