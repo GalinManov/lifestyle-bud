@@ -10,17 +10,15 @@ import './App.css'
 
 function App() {
 
-  
 
-  
+
+
 
 
   return (
     <div className='sm:h-svh bg-green-100'>
-
-      <NavBar></NavBar>
-
       <GlobalContextProvider>
+        <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path="/create" element={<Create />}></Route>

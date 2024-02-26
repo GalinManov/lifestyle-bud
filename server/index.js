@@ -12,4 +12,7 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/foods", foodRouter);
 
+mongoose.connect('mongodb://127.0.0.1:27017/lifestyle-bud')
+    .then(console.log("Successfully connected to DB!"))
+
 app.listen(5000, () => console.log("Server running..."));

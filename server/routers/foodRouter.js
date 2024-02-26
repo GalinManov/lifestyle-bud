@@ -12,7 +12,7 @@ foodRouter.get("/all", async(req, res) => {
 foodRouter.post("/create", async(req, res) => {
     const {foodName, calories, protein, carbs, fats} = req.body;
 
-    const food = new FoodModel(foodName, calories, protein, carbs, fats);
+    const food = new FoodModel({foodName, calories, protein, carbs, fats});
 
     await food.save();
 

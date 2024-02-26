@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
+import axios from 'axios';
 
 export const FoodForm = () => {
 
@@ -15,11 +16,13 @@ export const FoodForm = () => {
         fats: 0
     });
 
+    const [error, setError] = useState("");
+
     function handleChange(e) {
-       setFormData(prev => ({...prev, [e.target.name]: e.target.value}));
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         const foodName = formData.foodName;
         const calories = formData.calories;
@@ -27,8 +30,26 @@ export const FoodForm = () => {
         const carbs = formData.carbs;
         const fats = formData.fats;
 
-        dispatch({type:"ADD_FOOD", payload: {
-            foodName, calories, protein, carbs, fats}
+        if (foodName == "" || calories == 0) {
+            return setError("Please enter the food name and calories!")
+        };
+
+        await axios.post("http://localhost:5000/foods/create", { foodName, calories, protein, carbs, fats })
+
+        dispatch({
+            type: "ADD_FOOD", payload: {
+                foodName, calories, protein, carbs, fats
+            }
+        });
+
+        setError("");
+
+        setFormData({
+            foodName: "",
+            calories: 0,
+            protein: 0,
+            carbs: 0,
+            fats: 0
         });
 
         console.log(state)
@@ -72,6 +93,7 @@ export const FoodForm = () => {
 
                 <button type="submit" className="border-black rounded-full self-center bg-green-100 h-fit p-4 hover:bg-green-200 transition">Add product</button>
             </form>
+            {error != "" && <div className="text-red-400">{error}</div>}
         </div>
     )
 
