@@ -11,20 +11,26 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
 
-    const foodReducer = (state, action) => {
+    const rootReducer = (state, action) => {
         switch (action.type) {
             case "GET_FOOD": return state = { ...state, foods: action.payload };
             case "ADD_FOOD": return state = { ...state, foods: [...state.foods, action.payload] };
+            case "GET_WORKOUTS": return state = { ...state, workouts: action.payload }
+            case "ADD_WORKOUT": return state = { ...state, workouts: [...state.workouts, action.payload] };
             default:
                 return state.foods
         }
     };
 
-    const [state, dispatch] = useReducer(foodReducer, initialState);
+    const [state, dispatch] = useReducer(rootReducer, initialState);
 
     useEffect(() => {
         axios.get("http://localhost:5000/foods/all")
-            .then(res => dispatch({ type: "GET_FOOD", payload: res.data.data}))
+            .then(res => dispatch({ type: "GET_FOOD", payload: res.data.data }))
+
+        axios.get("http://localhost:5000/workouts/all")
+            .then(res => dispatch({ type: "GET_WORKOUTS", payload: res.data.data }))
+
     }, []);
 
 

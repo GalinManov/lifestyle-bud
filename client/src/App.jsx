@@ -11,12 +11,8 @@ import './App.css'
 function App() {
 
 
-
-
-
-
   return (
-    <div className='sm:h-svh bg-green-100'>
+    <div className='sm:min-h-svh bg-green-100'>
       <GlobalContextProvider>
         <NavBar></NavBar>
         <Routes>
