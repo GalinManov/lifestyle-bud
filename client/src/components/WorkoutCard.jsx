@@ -1,6 +1,11 @@
-export const WorkoutCard = ({workout}) => {
+import { useNavigate } from "react-router-dom"
+
+
+export const WorkoutCard = ({ workout }) => {
+    const nav = useNavigate();
+
     return (
-        <div className="flex justify-between space-x-5 bg-green-300 
+        <div onClick={() => nav(`/details/${workout._id}`)} className="flex justify-between space-x-5 bg-green-300 
         rounded p-4 h-28 shadow-lg hover:scale-105 transition-all hover:cursor-pointer">
             <div>
                 <h1 className="text-2xl mb-2">{workout.day}</h1>

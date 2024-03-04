@@ -55,11 +55,15 @@ export const Create = () => {
         const rest = formData.rest;
 
 
-        await axios.post("http://localhost:5000/workouts/create", { bodyPart, day, rest, exercises: filteredExer });
+        const res = await axios.post("http://localhost:5000/workouts/create", { bodyPart, day, rest, exercises: filteredExer });
 
-        dispatch({type:"ADD_WORKOUT", payload: { bodyPart, day, rest, exercises: filteredExer }})
+        if (!res.data.errors) {
+            dispatch({ type: "ADD_WORKOUT", payload: { bodyPart, day, rest, exercises: filteredExer } })
 
-        nav("/");
+            nav("/");
+        } else {
+           setError("Please fill out all necessary fields (at least 1 exercise)!")
+        }
     };
 
 

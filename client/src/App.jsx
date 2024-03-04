@@ -1,7 +1,7 @@
 import { NavBar } from './components/NavBar'
 import { Home } from './components/Home'
 import { Create } from './components/Create'
-import { Details } from './components/Details'
+import { WorkoutDetails } from './components/WorkoutDetails'
 import { useState, useContext } from 'react'
 import { Route, Routes } from 'react-router-dom';
 import { GlobalContextProvider } from './contexts/GlobalContext'
@@ -12,13 +12,13 @@ function App() {
 
 
   return (
-    <div className='sm:min-h-svh bg-green-100'>
+    <div className=''>
       <GlobalContextProvider>
         <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path="/create" element={<Create />}></Route>
-          <Route path="/details/:id" element={<Details />}></Route>
+          <Route path="/details/:id" element={<WorkoutDetails />}></Route>
         </Routes>
       </GlobalContextProvider>
 
